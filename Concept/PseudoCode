@@ -1,0 +1,4 @@
+//Need to collect parking violations data from Boulder Municipal Police Department
+//From that information, I'll sort the parking tickets into locations, days, and times of day
+//Its algorithm will ultimately provide a numerical percentage that a person will receive a parking ticket
+//The user won't have any real-time data or location tracking but will use this simply as a reference
