@@ -35,26 +35,16 @@ def sortCrimeFile():
 
 #count the number of crimes in a neighborhood --> you need to have a smaller list that contains only one instance of each neighborhood
 def hoodCount():
-    for area in hoodList: #area is a string
-        area = area.strip()
-        #print (type(area))
-        #print (area)
-        #break
-        if (area not in hoodList):
-            totalHoodList.append(area)
-            print(totalHoodList)
-            print (type(totalHoodList))
-            break
-    #neighborHood = tempCrimeList[-3]   
+	totalHoodList = set(hoodList) #this should create a new list that contains each neighborhood only once --> much smaller list
 
 
 #Global variables/lists/whatever
 filename = "crime.csv"
 crimeList = [] #original list of crimes that aren't parsed
 tempCrimeList = [] #holder for comma sep. values of orignial list
-hoodList = [] #neighborhood of each cirme committted
+hoodList = [] #neighborhood of each cirme committted, listed multiple times
 offenseList = [] #name of each crime
-totalHoodList = []
+totalHoodList = [] #list to hold single neighborhood names
 
 #Call the functions
 readCrimeFile(filename)
