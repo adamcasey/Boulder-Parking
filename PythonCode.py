@@ -39,9 +39,9 @@ def hoodCount():
 	totalHoodList = set(hoodList) #this should create a new list that contains each neighborhood only once --> much smaller list
 
 #open second .csv file to read in offense codes that further clarify crimes
-def readOffenseCodes(codeFile):
+def readOffenseCodes(filename):
 	tempList = []
-	for line in codeFile:
+	for line in filename:
 		line = line.strip()
 		tempList = line.split(',')
 		offenseCodeTwo.append(int(tempList[0].strip()))
@@ -49,7 +49,7 @@ def readOffenseCodes(codeFile):
 		
 
 #Global variables/lists/whatever
-filename = "crime.csv"
+crimeFile = "crime.csv"
 codeFile = "offense_codes.csv"
 
 crimeList = [] #original list of crimes that aren't parsed
@@ -61,9 +61,10 @@ totalHoodList = [] #list to hold single neighborhood names
 codeList = [] #list to hold offense codes 
 
 #Call the functions
-readCrimeFile(filename)
+readCrimeFile(crimeFile)
 sortCrimeFile()
 hoodCount()
+readOffenseCodes(codeFile)
 
 #print (hoodList)
 #print (offenseList)
