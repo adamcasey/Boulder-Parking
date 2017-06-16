@@ -1,6 +1,5 @@
 import csv
 
-
 '''
 Crime File : INCIDENT_ID	OFFENSE_ID(1)	OFFENSE_CODE(2)	OFFENSE_CODE_EXTENSION(3)	OFFENSE_TYPE_ID(4)	OFFENSE_CATEGORY_ID(5)	FIRST_OCCURRENCE_DATE(6)
 LAST_OCCURRENCE_DATE(7)	REPORTED_DATE(8)	INCIDENT_ADDRESS(9)	GEO_X(10)	GEO_Y	(11)
@@ -18,6 +17,7 @@ def readCrimeFile(filename):
         crimeList.append(line) #adds line to list as a string
 
 def sortCrimeFile():
+    tempCrimeList = [] #holder for comma sep. values of orignial list
     for line in crimeList:
         line = line.strip()
         tempCrimeList = line.split(',') #each value seperated by a comma is put into a list
@@ -26,6 +26,7 @@ def sortCrimeFile():
             if (isTraffic == 0): #checks to see if offense was a traffic or criminal crime, 0 means 'no', if 'IS TRAFFIC = 0' then it is a real crime
                 hoodList.append(tempCrimeList[-3].strip()) #tempCrimeList holds all the comma seperated values
                 offenseList.append(tempCrimeList[4].strip())
+				offenseCodeOne.append(int(tempCrimelist[2].strip()))
         except: #do nothing
             pass
 
@@ -37,14 +38,27 @@ def sortCrimeFile():
 def hoodCount():
 	totalHoodList = set(hoodList) #this should create a new list that contains each neighborhood only once --> much smaller list
 
+#open second .csv file to read in offense codes that further clarify crimes
+def readOffenseCodes(codeFile):
+	tempList = []
+	for line in codeFile:
+		line = line.strip()
+		tempList = line.split(',')
+		offenseCodeTwo.append(int(tempList[0].strip()))
+
+		
 
 #Global variables/lists/whatever
 filename = "crime.csv"
+codeFile = "offense_codes.csv"
+
 crimeList = [] #original list of crimes that aren't parsed
-tempCrimeList = [] #holder for comma sep. values of orignial list
+offenseCodeOne = [] #list to hold offense code reference for crime.csv file
+offenseCodeTwo = [] #list to hold offense code reference for offense_codes.csv file
 hoodList = [] #neighborhood of each cirme committted, listed multiple times
 offenseList = [] #name of each crime
 totalHoodList = [] #list to hold single neighborhood names
+codeList = [] #list to hold offense codes 
 
 #Call the functions
 readCrimeFile(filename)
