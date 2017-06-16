@@ -44,8 +44,8 @@ def readOffenseCodes(filename):
 	for line in filename:
 		line = line.strip()
 		tempList = line.split(',')
-		offenseCodeTwo.append(int(tempList[0].strip()))
-
+		offenseCodeTwo.append(int(tempList[0].strip())) #hold 4 digit offense code from file
+		offenseName.append(tempList[3].strip()) #hold offense name that corresponds with 4 digit offense code
 		
 
 #Global variables/lists/whatever
@@ -59,6 +59,7 @@ hoodList = [] #neighborhood of each cirme committted, listed multiple times
 offenseList = [] #name of each crime
 totalHoodList = [] #list to hold single neighborhood names
 codeList = [] #list to hold offense codes 
+offenseName = [] #list to hold offense type names (i.e. possession of stolen property, selling heroin..) --> corresponds to 4-digit offense code
 
 #Call the functions
 readCrimeFile(crimeFile)
@@ -66,5 +67,5 @@ sortCrimeFile()
 hoodCount()
 readOffenseCodes(codeFile)
 
-#print (hoodList)
-#print (offenseList)
+#User interaction
+userLocation = raw_input("What neighborhood are you in right now?")
